@@ -4,14 +4,19 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-import Slide from '@mui/material/Slide';
-import PropTypes from 'prop-types';
 import Link from 'next/link'
+
+// ----- icons -----
+import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
+import LogoutIcon from '@mui/icons-material/Logout';
+import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import LoginIcon from '@mui/icons-material/Login';
+import HomeIcon from '@mui/icons-material/Home';
+
+//import style from '../styles/utils.module.css'
 
 //import style from './nav.module.css'
 import { ThemeProvider } from '@mui/material/styles';
@@ -29,7 +34,7 @@ export default function MenuAppBar(props) {
         setAnchorEl(null);
     };
 
-    function HideOnScroll(props) {
+    /*function HideOnScroll(props) {
         const { children, window } = props;
         // Note that you normally won't need to set the window ref as useScrollTrigger
         // will default to window.
@@ -51,67 +56,79 @@ export default function MenuAppBar(props) {
          * Injected by the documentation to work in an iframe.
          * You won't need it on your project.
          */
-        window: PropTypes.func,
-    };
+    //    window: PropTypes.func,
+    //};
 
     return (
         <ThemeProvider theme={theme}>
 
-            <HideOnScroll {...props}>
-                <Box>
-                    <AppBar position="static" color="black">
-                        <Toolbar>
-                            <IconButton
-                                size="large"
-                                edge="start"
-                                color="inherit"
-                                aria-label="menu"
-                                sx={{ mr: 2 }}
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Link href="/" >
-                                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                    <a>Home</a>
-                                </Typography>
-                            </Link>
+            <Box>
+                <AppBar position="static" color="orange">
+                    <Toolbar>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                            <a>Gipsy</a>
+                        </Typography>
 
-                            {auth && (
-                                <div>
-                                    <IconButton
-                                        size="large"
-                                        aria-label="account of current user"
-                                        aria-controls="menu-appbar"
-                                        aria-haspopup="true"
-                                        onClick={handleClick}
-                                        color="inherit"
-                                    >
-                                        <AccountCircle />
-                                    </IconButton>
-                                    <Menu
-                                        id="menu-appbar"
-                                        anchorEl={anchorEl}
-                                        anchorOrigin={{
-                                            vertical: 'top',
-                                            horizontal: 'right',
-                                        }}
-                                        keepMounted
-                                        transformOrigin={{
-                                            vertical: 'top',
-                                            horizontal: 'right',
-                                        }}
-                                        open={Boolean(anchorEl)}
-                                        onClose={handleClose}
-                                    >
-                                        <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                        <MenuItem onClick={handleClose}>My account</MenuItem>
-                                    </Menu>
-                                </div>
-                            )}
-                        </Toolbar>
-                    </AppBar>
-                </Box>
-            </HideOnScroll>
+
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            href="/"
+                            color="inherit"
+                        >
+                            <HomeIcon />
+                        </IconButton>
+                        {auth && (
+                            <div>
+                                <IconButton
+                                    size="large"
+                                    aria-label="account of current user"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    onClick={handleClick}
+                                    color="inherit"
+                                >
+                                    <AccountCircle />
+                                </IconButton>
+                                <Menu
+                                    id="menu-appbar"
+                                    anchorEl={anchorEl}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorEl)}
+                                    onClose={handleClose}
+                                >
+                                    <MenuItem onClick={handleClose}><SettingsApplicationsIcon /> Panel</MenuItem>
+                                    <MenuItem onClick={handleClose}><LogoutIcon /> Log out</MenuItem>
+                                </Menu>
+                            </div>
+                        )}
+                        {!auth && (
+                            <div>
+                                <LoginIcon />
+                            </div>
+                        )}
+                    </Toolbar>
+                </AppBar>
+            </Box>
         </ThemeProvider>
     );
 }

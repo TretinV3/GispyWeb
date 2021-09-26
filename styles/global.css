@@ -6,22 +6,30 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   line-height: 1.6;
   font-size: 18px;
+  background-color: #1D1D1D/*#424549*/;
+  color: #fff;
 }
 
 * {
   box-sizing: border-box;
+  font-family: Roboto;
 }
 
-a {
-  color: #0070f3;
+/*a {
+  color: #F76000;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
-}
+}*/
 
 img {
   max-width: 100%;
   display: block;
+}
+
+@font-face {
+  font-family: Roboto;
+  src: url("../public/Roboto-Light.ttf");
 }
